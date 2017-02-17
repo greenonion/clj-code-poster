@@ -6,8 +6,8 @@ Your Own Code Poster With Elixir](http://www.east5th.co/blog/2017/02/13/build-yo
 ## Usage
 
 You will need an image file and a code file. The SVG will be rendered using the
-Adove Source Code Pro fonts, so you will also need to have these installed in
-your system.
+[Adobe Source Code Pro](https://github.com/adobe-fonts/source-code-pro) fonts,
+so you will also need to have these installed in your system.
 
 Please note that due to the font ratio you will have to adjust the image
 beforehand. Change the width to be ~166.7% of the height. Then resize your image
