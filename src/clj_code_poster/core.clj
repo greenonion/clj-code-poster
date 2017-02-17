@@ -26,6 +26,8 @@
                 (colours/extract-green rgb)
                 (colours/extract-blue rgb)]))))
 
+;; TODO: We should convert to hex only immediately before creating the SVG
+;; structure, i.e. in TextField->svg
 (def img-hex
   (->>
    (map components-hex (image/get-pixels img))
@@ -36,11 +38,10 @@
       (clojure.string/replace #"\s*\n+\s*" " ")
       (clojure.string/replace #"\s" " ")))
 
+;; TODO: Pass it as a lazy, cycling sequence.
 (def code
   (apply str (repeat 100 (-> (slurp code-file)
                             join-code
-                            ;; not sure if char-array is what we need here, moving on.
-                            ;;char-array
                             ;;      cycle
                             ))))
 
@@ -72,16 +73,6 @@
          (fn [[x y]] (produce-row (map vector x (range)) y))
          (map vector img-hex (range)))
         (map TextField->svg))])
-
-;; (clojure.pprint/pprint
-;;  (mapcat
-;;   (fn [[x y]] (produce-row (map vector x (range)) y))
-;;   (map vector (take 2 img-hex) (range))))
-
-;; (clojure.pprint/pprint
-;;  (->> (produce-row (map vector (first img-hex) (range)) 35)
-;;       (map TextField->svg)
-;;       vec))
 
 (defn -main
   "I don't do a whole lot ... yet."
